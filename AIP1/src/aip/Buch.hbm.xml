@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 2, 2013 1:03:50 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="aip">
+  <class name="Buch" table="BUCH">
+    <id column="BUCH_ID" name="buchId" type="long">
+      <generator class="native"/>
+    </id>
+    <property access="field" name="titel" type="string">
+      <column name="TITEL"/>
+    </property>
+    <set fetch="select" inverse="true" lazy="false" name="kurse" table="BUCH_KURS">
+      <key>
+        <column name="BUCH_ID" not-null="true"/>
+      </key>
+      <many-to-many class="Kurs">
+        <column name="KURS_ID" not-null="true"/>
+      </many-to-many>
+    </set>
+  </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 2, 2013 1:03:50 PM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping package="aip">
+  <class name="Student" table="STUDENT">
+    <id column="STUDENT_ID" name="studentId" type="long">
+      <generator class="native"/>
+    </id>
+    <property access="field" name="name" type="java.lang.String">
+      <column name="NAME"/>
+    </property>
+    <one-to-one class="Notenkonto" name="notenkonto"/>
+    <!-- <one-to-one name="notenkonto" class="Notenkonto" cascade="save-update"></one-to-one> -->
+    <set fetch="select" inverse="true" lazy="false" name="kurse" table="kurs">
+      <key>
+        <column name="student_id" not-null="true"/>
+      </key>
+      <one-to-many class="Kurs"/>
+    </set>
+  </class>
+</hibernate-mapping>
